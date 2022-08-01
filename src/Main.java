@@ -1,67 +1,46 @@
 
 import java.util.Scanner;
-
-class AtmProjeSwitchCase {
+// Java ile iki sayının EBOB ve EKOK değerlerini "While Döngüsü" kullanarak yazınız.
+class ebob_ekok {
     public static void main(String[] args) {
+        Scanner inp = new Scanner(System.in);
+        int n1, n2;
+        boolean a = false;
 
-        String kullaniciAdi, parola;
-        int girisHakki = 3, bakiye = 1500, secim;
+        do {
+            System.out.print("Enter the number of n1:");
+            n1 = inp.nextInt();
+            System.out.println("Enter the number of n2:");
+            n2 = inp.nextInt();
 
-        Scanner input = new Scanner(System.in);
-        while (girisHakki > 0) {
-            System.out.print("Kullanıcı Adınız :");
-            kullaniciAdi = input.nextLine();
-
-            System.out.print("Parolanız : ");
-            parola = input.nextLine();
-
-            if (kullaniciAdi.equals("patika") && parola.equals("dev123")) {
-
-                System.out.println("Merhaba, Kodluyoruz Bankasına Hoşgeldiniz!");
-                do {
-                    System.out.println("1-Para yatırma\n" +
-                            "2-Para Çekme\n" +
-                            "3-Bakiye Sorgula\n" +
-                            "4-Çıkış Yap");
-                    System.out.print("Lütfen yapmak istediğiniz işlemi seçiniz : ");
-                    secim = input.nextInt();
-
-
-                    switch (secim) {
-                        case 1:
-                            System.out.print("Yatırmak istediğiniz para miktarını giriniz : ");
-                            int yatirPara = input.nextInt();
-                            bakiye += yatirPara;
-                            break;
-
-                        case 2:
-                            System.out.print("Çekmek istediğiniz para miktarını giriniz : : ");
-                            int cekPara = input.nextInt();
-
-                            if (cekPara > bakiye) {
-                                System.out.println("Bakiye yetersiz.");
-                            } else {
-                                bakiye -= cekPara;
-                            }
-                            break;
-                        case 3:
-                            System.out.println("Bakiyeniz : " + bakiye);
-                            break;
-                    }
-
-                } while (secim != 4);
-                System.out.println("Tekrar görüşmek üzere.");
-                break;
+            if (n1 <= 0 || n2 <= 0) {
+                System.out.println("Please enter the pozitive numbers.");
             } else {
-                girisHakki--;
-                System.out.println("Hatalı kullanıcı adı veya şifre. Tekrar deneyiniz.");
-
-                if (girisHakki == 0) {
-                    System.out.println("Hesabınız bloke olmuştur lütfen banka ile iletişime geçiniz.");
-                } else {
-                    System.out.println("Kalan Hakkınız : " + girisHakki);
-                }
+                a = true;
             }
+        } while (!a);
+        if (n2 < n1) {
+            int tempN2 = n2;
+            n2 = n1;
+            n1 = tempN2;
+        }
+        int i = n1;
+        while (i >= 1) {
+            if (n1 % i == 0 && n2 % i == 0) {
+                int ebob = i;
+                System.out.println("EBOB is:" + ebob);
+                break;
+            }
+            i--;
+        }
+        int j = 1;
+        while (j <= (n1 * n2)) {
+            if (j % n1 == 0 && j % n2 == 0) {
+                int ekok = j;
+                System.out.println("EKOK is:" + ekok);
+                break;
+            }
+            j++;
         }
     }
 }
